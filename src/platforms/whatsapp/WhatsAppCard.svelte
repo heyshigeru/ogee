@@ -35,7 +35,7 @@
           alt=""
           width={box?.width}
           height={box?.height}
-          style:width={box ? `${box.width}px` : undefined}
+          style:width={`${MEDIA_SLOT}px`}
           style:height={box ? `${box.height}px` : undefined}
           style:max-height={`${MEDIA_BOX_CONSTRAINTS.coverSquare}px`}
           onload={(e) => image.loaded(e.currentTarget as HTMLImageElement)}
@@ -110,16 +110,15 @@
     margin: -3px -4px 6px -6px;
   }
 
-  /* Large image: native aspect ratio up to WhatsApp's media width. The pre-measurement bound
-     is the inline style:max-height sourced from MEDIA_BOX_CONSTRAINTS.coverSquare — tall
-     no-dims images render as a cover-cropped ≤334 square even before the box is computed;
-     object-fit: cover is a no-op whenever the box matches the intrinsic ratio.
+  /* Large image: width is unconditionally MEDIA_SLOT (fill semantics — box width is always
+     334 whether fill or coverSquare, so it's knowable before load/metadata). Height comes
+     from the box when dims are known; otherwise natural scaling capped by max-height with
+     cover. object-fit: cover is a no-op whenever the box matches the intrinsic ratio.
      334 = bubble content 324 (340 − 9 − 7) + .preview negative margins 6 + 4; cover square
      fills the slot (real WhatsApp uses 240 + a narrowed bubble — deliberate deviation;
      phase-3-calibration.md 2026-07-15). */
   .media {
     display: block;
-    width: 100%;
     height: auto;
     object-fit: cover;
   }

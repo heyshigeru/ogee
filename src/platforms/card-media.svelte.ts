@@ -36,6 +36,10 @@ export interface MediaBoxConstraints {
  * naturalWidth/naturalHeight is ground truth; lying declared meta must not
  * distort the rendered box.
  *
+ * Sizing is fill-slot-width: the box always occupies `maxWidth` (upscaling
+ * small images is allowed — a deliberate deviation from real platforms, which
+ * render sub-slot images at native size), then reclamps against maxHeight.
+ *
  * Returns undefined unless layout is 'large' and effective dims exist
  * (a lone declared dimension cannot establish a ratio; neither measured nor a
  * complete declared pair → fall back to the per-card CSS caps at load time).
@@ -75,8 +79,8 @@ export function mediaDisplayBox(
     return { width: c.coverSquare, height: c.coverSquare };
   }
 
-  // Contain: fit inside maxWidth/maxHeight without upscaling past effective width.
-  let w = Math.min(effectiveWidth, c.maxWidth);
+  // Fill slot width (upscale allowed), then reclamp against maxHeight.
+  let w = c.maxWidth;
   let h = Math.round((w * effectiveHeight) / effectiveWidth);
   if (c.maxHeight !== undefined && h > c.maxHeight) {
     h = c.maxHeight;

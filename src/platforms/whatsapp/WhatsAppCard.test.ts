@@ -133,7 +133,23 @@ describe('WhatsAppCard — sent-message bubble in light and dark', () => {
     expect(img!.style.height).toBe('334px');
   });
 
-  it('Large layout with a lone width: no width/height attributes or inline styles', () => {
+  it('Large layout with small image dims: upscales to fill slot (300x195 → 334x217)', () => {
+    document.documentElement.dataset.theme = 'light';
+    const card: PlatformCard = {
+      ...imageCard,
+      image: { url: 'https://example.com/large.jpg', width: 300, height: 195 },
+    };
+    const { container } = render(WhatsAppCard, { props: { card } });
+
+    const img = container.querySelector('img') as HTMLImageElement | null;
+    expect(img).not.toBeNull();
+    expect(img!.getAttribute('width')).toBe('334');
+    expect(img!.getAttribute('height')).toBe('217');
+    expect(img!.style.width).toBe('334px');
+    expect(img!.style.height).toBe('217px');
+  });
+
+  it('Large layout with a lone width: no height box, but width is unconditional MEDIA_SLOT', () => {
     document.documentElement.dataset.theme = 'light';
     const card: PlatformCard = {
       ...imageCard,
@@ -145,7 +161,8 @@ describe('WhatsAppCard — sent-message bubble in light and dark', () => {
     expect(img).not.toBeNull();
     expect(img!.hasAttribute('width')).toBe(false);
     expect(img!.hasAttribute('height')).toBe(false);
-    expect(img!.style.width).toBe('');
+    // Fill semantics: media width is always MEDIA_SLOT when the image renders.
+    expect(img!.style.width).toBe('334px');
     expect(img!.style.height).toBe('');
   });
 
@@ -159,9 +176,11 @@ describe('WhatsAppCard — sent-message bubble in light and dark', () => {
 
     const img = container.querySelector('img') as HTMLImageElement | null;
     expect(img).not.toBeNull();
-    // Pre-load: no declared dims → mediaDisplayBox returns undefined.
+    // Pre-load: no declared dims → mediaDisplayBox returns undefined (no height box),
+    // but width is still MEDIA_SLOT (metadata-independent under fill semantics).
     expect(img!.hasAttribute('width')).toBe(false);
     expect(img!.hasAttribute('height')).toBe(false);
+    expect(img!.style.width).toBe('334px');
     // max-height cap is set immediately from MEDIA_BOX_CONSTRAINTS.coverSquare.
     expect(img!.style.maxHeight).toBe('334px');
 
@@ -182,7 +201,7 @@ describe('WhatsAppCard — sent-message bubble in light and dark', () => {
     expect(img!.style.maxHeight).toBe('334px');
   });
 
-  it('Large layout with no declared dims: no width/height box, but max-height cap is set', () => {
+  it('Large layout with no declared dims: no height box, but width is unconditional MEDIA_SLOT', () => {
     document.documentElement.dataset.theme = 'light';
     const { container } = render(WhatsAppCard, { props: { card: imageCard } });
 
@@ -190,7 +209,7 @@ describe('WhatsAppCard — sent-message bubble in light and dark', () => {
     expect(img).not.toBeNull();
     expect(img!.hasAttribute('width')).toBe(false);
     expect(img!.hasAttribute('height')).toBe(false);
-    expect(img!.style.width).toBe('');
+    expect(img!.style.width).toBe('334px');
     expect(img!.style.height).toBe('');
     expect(img!.style.maxHeight).toBe('334px');
   });

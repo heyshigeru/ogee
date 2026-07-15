@@ -192,6 +192,24 @@ describe('SlackCard — flat message row with an unfurl in light and dark', () =
     expect(main!.style.height).toBe('360px');
   });
 
+  it('Large layout with small image dims: upscales to fill slot (300x195 → 360x234)', () => {
+    document.documentElement.dataset.theme = 'light';
+    const card: PlatformCard = {
+      ...largeCard,
+      image: { url: 'https://example.com/large.jpg', width: 300, height: 195 },
+    };
+    const { container } = render(SlackCard, { props: { card } });
+
+    const main = container.querySelector(
+      'img.media',
+    ) as HTMLImageElement | null;
+    expect(main).not.toBeNull();
+    expect(main!.getAttribute('width')).toBe('360');
+    expect(main!.getAttribute('height')).toBe('234');
+    expect(main!.style.width).toBe('360px');
+    expect(main!.style.height).toBe('234px');
+  });
+
   it('Large layout with a lone width: no width/height attributes or inline styles', () => {
     document.documentElement.dataset.theme = 'light';
     const card: PlatformCard = {

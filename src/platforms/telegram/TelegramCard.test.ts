@@ -162,6 +162,22 @@ describe('TelegramCard — sent-message bubble in light and dark', () => {
     expect(img!.style.height).toBe('432px');
   });
 
+  it('Large layout with small image dims: upscales to fill slot (300x195 → 306x199)', () => {
+    document.documentElement.dataset.theme = 'light';
+    const card: PlatformCard = {
+      ...largeCard,
+      image: { url: 'https://example.com/large.jpg', width: 300, height: 195 },
+    };
+    const { container } = render(TelegramCard, { props: { card } });
+
+    const img = container.querySelector('img') as HTMLImageElement | null;
+    expect(img).not.toBeNull();
+    expect(img!.getAttribute('width')).toBe('306');
+    expect(img!.getAttribute('height')).toBe('199');
+    expect(img!.style.width).toBe('306px');
+    expect(img!.style.height).toBe('199px');
+  });
+
   it('Large layout with a lone width: no width/height attributes or inline styles', () => {
     document.documentElement.dataset.theme = 'light';
     const card: PlatformCard = {

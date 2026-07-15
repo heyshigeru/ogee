@@ -197,6 +197,24 @@ describe('DiscordCard — flat message row with an embed in light and dark', () 
     expect(main!.style.height).toBe('300px');
   });
 
+  it('Large layout with small image dims: upscales to fill slot (300x195 → 365x237)', () => {
+    document.documentElement.dataset.theme = 'light';
+    const card: PlatformCard = {
+      ...largeCard,
+      image: { url: 'https://example.com/large.jpg', width: 300, height: 195 },
+    };
+    const { container } = render(DiscordCard, { props: { card } });
+
+    const main = container.querySelector(
+      'img.media',
+    ) as HTMLImageElement | null;
+    expect(main).not.toBeNull();
+    expect(main!.getAttribute('width')).toBe('365');
+    expect(main!.getAttribute('height')).toBe('237');
+    expect(main!.style.width).toBe('365px');
+    expect(main!.style.height).toBe('237px');
+  });
+
   it('Large layout with a lone width: no width/height attributes or inline styles', () => {
     document.documentElement.dataset.theme = 'light';
     const card: PlatformCard = {

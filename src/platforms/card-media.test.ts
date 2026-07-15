@@ -41,6 +41,15 @@ describe('mediaDisplayBox — measured dims priority', () => {
     expect(box).toEqual({ width: 360, height: 189 });
   });
 
+  it('sub-slot measured dims upscale to fill maxWidth (300x195 → 360x234)', () => {
+    const card = largeCard({ url: 'https://example.com/img.jpg' });
+    const box = mediaDisplayBox(card, constraints, {
+      width: 300,
+      height: 195,
+    });
+    expect(box).toEqual({ width: 360, height: 234 });
+  });
+
   it('thumbnail/non-large imageLayout returns undefined even when measured is provided', () => {
     const card = largeCard(
       { url: 'https://example.com/img.jpg', width: 1200, height: 630 },
