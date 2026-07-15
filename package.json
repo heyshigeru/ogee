@@ -30,7 +30,7 @@
     "prettier-plugin-svelte": "^4.1.1",
     "svelte": "^5.56.4",
     "svelte-check": "^4.7.2",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "typescript-eslint": "^8.63.0",
     "vitest": "^4.1.10",
     "wxt": "^0.20.27"
