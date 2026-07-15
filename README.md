@@ -32,6 +32,8 @@ in your browser:
   demand), `storage` (remember your theme preference), `downloads` (save the
   image).
 
+Full policy: [PRIVACY.md](./PRIVACY.md).
+
 ## Installation
 
 - **Chrome Web Store:** _(link coming once published)_
