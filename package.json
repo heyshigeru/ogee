@@ -28,10 +28,10 @@
     "jsdom": "^29.1.1",
     "prettier": "^3.9.5",
     "prettier-plugin-svelte": "^4.1.1",
-    "svelte": "^5.56.4",
+    "svelte": "^5.56.5",
     "svelte-check": "^4.7.2",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.63.0",
+    "typescript-eslint": "^8.64.0",
     "vitest": "^4.1.10",
     "wxt": "^0.20.27"
   },
