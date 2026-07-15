@@ -1,0 +1,4 @@
+{
+  "extends": ["@tsconfig/svelte/tsconfig.json", "./.wxt/tsconfig.json"],
+  "compilerOptions": {}
+}

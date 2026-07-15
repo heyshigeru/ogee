@@ -1,0 +1,37 @@
+# Dependabot configuration — automated dependency update PRs.
+# See ADR-0007 for the "review PRs, don't blindly bump" principle: a version
+# bump is not always a fix. Every update PR is gated by CI (.github/workflows/ci.yml).
+#
+# Security updates (driven by Dependabot alerts) are a separate repo setting
+# under Settings → Code security, and fire regardless of this schedule.
+version: 2
+updates:
+  # npm/pnpm dependencies (package.json + pnpm-lock.yaml).
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: 'chore(deps)'
+      prefix-development: 'chore(deps-dev)'
+    # Bundle minor + patch bumps into one PR to cut noise; major versions come
+    # as individual PRs so breaking changes get reviewed on their own.
+    groups:
+      minor-and-patch:
+        update-types:
+          - 'minor'
+          - 'patch'
+
+  # GitHub Actions pinned in .github/workflows/*.
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    commit-message:
+      prefix: 'ci(deps)'
+    groups:
+      actions:
+        update-types:
+          - 'minor'
+          - 'patch'

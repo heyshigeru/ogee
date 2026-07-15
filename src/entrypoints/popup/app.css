@@ -1,0 +1,79 @@
+/*
+ * Popup token layers (SPEC §12, FR-20…FR-24).
+ *
+ * Light defaults live under :root; dark overrides under [data-theme="dark"] on
+ * the document root. Colors are authored in oklch().
+ *
+ * Symmetrical flip palette:
+ *   - Light Mode: bg oklch(1 0 0), fg/accent oklch(0.222 0 0)
+ *   - Dark Mode: bg oklch(0.222 0 0), fg/accent oklch(1 0 0)
+ */
+
+:root {
+  --font-sans:
+    system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Theme colors */
+  --bg-primary: oklch(1 0 0);
+  --fg-primary: oklch(0.222 0 0);
+  --fg-secondary: oklch(0.483 0.003 286.281);
+  --fg-tertiary: oklch(0.706 0.003 286.326);
+
+  /* Spacing / Border / Interactive */
+  --border: oklch(0 0 0 / 0.1);
+  --bg-secondary: oklch(0.97 0 0);
+  --switch-track-off: oklch(0.87 0 0);
+
+  --accent: oklch(0.222 0 0);
+  --control-bg-hover: oklch(0 0 0 / 0.04);
+  --control-bg-active: oklch(1 0 0);
+
+  /* Floating action capsule chip shadow */
+  --chip-shadow:
+    0 0 0 0.5px oklch(0 0 0 / 0.089), 0 3px 6px -2px oklch(0 0 0 / 0.02),
+    0 1px 1px oklch(0 0 0 / 0.04);
+
+  /* Card and Skeleton */
+  --card-radius: 16px;
+  --skeleton-base: oklch(0.94 0 0);
+  --skeleton-highlight: oklch(0.97 0 0);
+}
+
+[data-theme='dark'] {
+  --bg-primary: oklch(0.222 0 0);
+  --fg-primary: oklch(1 0 0);
+  --fg-secondary: oklch(0.679 0.003 264.537);
+  --fg-tertiary: oklch(0.482 0.003 264.528);
+
+  --border: oklch(1 0 0 / 0.15);
+  --bg-secondary: oklch(0.265 0.002 286.274);
+  --switch-track-off: oklch(0.439 0 0);
+
+  --accent: oklch(1 0 0);
+  --control-bg-hover: oklch(1 0 0 / 0.06);
+  --control-bg-active: oklch(0.348 0 0);
+
+  --chip-shadow: 0 0 0 0.5px oklch(1 0 0 / 0.16);
+
+  --skeleton-base: oklch(0.256 0 0);
+  --skeleton-highlight: oklch(0.301 0 0);
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Shared multi-line clamp. Cards set --clamp-lines (calibrated per element). */
+.clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: var(--clamp-lines);
+  line-clamp: var(--clamp-lines);
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
