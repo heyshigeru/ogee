@@ -4,6 +4,8 @@
   <p><em>Preview how pages look, everywhere.</em></p>
 </div>
 
+https://github.com/user-attachments/assets/9f2418f6-fef6-40d3-b731-1d2735c4c5b7
+
 OGee is a Chromium extension that shows how the current page’s Open Graph link
 card will look when it is shared. Open the popup on any page to see the real
 thumbnail, title, description, and domain each platform would display, side by
@@ -16,6 +18,7 @@ side, in both light and dark themes.
 - Reproduces each platform’s real image crop, title truncation, domain
   formatting, and fallbacks.
 - Renders every card in both light and dark themes.
+- Show or hide platforms and drag to reorder them.
 - Downloads the OG image or copies its URL in one click.
 - Runs entirely locally, with no network calls, no data collected, and a
   minimal permission set.
@@ -33,6 +36,13 @@ in your browser:
   image).
 
 Full policy: [PRIVACY.md](./PRIVACY.md).
+
+## Note
+
+Previews use the page you have open — OGee reads that tab’s meta tags locally.
+Most platforms instead fetch the URL with their own servers when you share.
+Cards approximate each platform’s layout; if a site serves different HTML to
+crawlers, or caches old tags, the live share card can differ.
 
 ## Installation
 
@@ -82,3 +92,14 @@ serialized and injected into the page on demand.
 ## License
 
 [MIT](./LICENSE)
+
+---
+
+<div align="center">
+
+Built by [Shigeru](https://heyshigeru.com)
+
+[Twitter](https://twitter.com/heyshigeru) ·
+[Threads](https://www.threads.com/@_heyshigeru)
+
+</div>
