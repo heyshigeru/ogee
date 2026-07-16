@@ -46,7 +46,8 @@ crawlers, or caches old tags, the live share card can differ.
 
 ## Installation
 
-- **Chrome Web Store:** _(link coming once published)_
+- **Chrome Web Store:**
+  [Install OGee](https://chromewebstore.google.com/detail/glncpeolnemlkojegffjlaccbcdpmnfe)
 
 ### From source (unpacked)
 
