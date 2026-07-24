@@ -4,7 +4,7 @@
   <p><em>Preview how pages look, everywhere.</em></p>
 </div>
 
-https://github.com/user-attachments/assets/9f2418f6-fef6-40d3-b731-1d2735c4c5b7
+[https://github.com/user-attachments/assets/9f2418f6-fef6-40d3-b731-1d2735c4c5b7](https://github.com/user-attachments/assets/e2c6c612-648e-43b9-b991-ce94b31e486d)
 
 OGee is a Chromium extension that shows how the current page’s Open Graph link
 card will look when it is shared. Open the popup on any page to see the real
