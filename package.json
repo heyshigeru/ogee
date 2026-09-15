@@ -15,20 +15,21 @@
     "format:check": "oxfmt --check ."
   },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "^7.2.0",
-    "@testing-library/jest-dom": "^6.9.1",
+    "@sveltejs/vite-plugin-svelte": "^7.3.0",
+    "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/svelte": "^5.4.2",
     "@tsconfig/svelte": "^5.0.8",
-    "@types/chrome": "^0.2.2",
+    "@types/chrome": "^0.2.9",
+    "@types/node": "^26.5.1",
     "@wxt-dev/module-svelte": "^2.0.5",
     "jsdom": "^29.1.1",
-    "oxfmt": "^0.60.0",
-    "oxlint": "^1.75.0",
-    "svelte": "^5.56.6",
-    "svelte-check": "^4.7.3",
+    "oxfmt": "^0.67.0",
+    "oxlint": "^1.82.0",
+    "svelte": "^5.57.0",
+    "svelte-check": "^4.7.6",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.10",
-    "wxt": "^0.20.27"
+    "vitest": "^4.1.11",
+    "wxt": "^0.21.4"
   },
   "packageManager": "pnpm@11.1.2"
 }

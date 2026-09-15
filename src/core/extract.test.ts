@@ -75,7 +75,7 @@ describe('extract', () => {
       height: 630,
       alt: 'Hero image',
     });
-    expect(meta.ogImages[1].url).toBe('https://example.com/img2.jpg');
+    expect(meta.ogImages[1]?.url).toBe('https://example.com/img2.jpg');
   });
 
   it("og:image:secure_url replaces the current entry's URL (no new entry)", () => {
@@ -85,7 +85,7 @@ describe('extract', () => {
     const meta = extract();
 
     expect(meta.ogImages).toHaveLength(1);
-    expect(meta.ogImages[0].url).toBe('https://example.com/img.jpg');
+    expect(meta.ogImages[0]?.url).toBe('https://example.com/img.jpg');
   });
 
   it('two og:image tags with the same URL produce two entries (document order)', () => {
@@ -102,7 +102,7 @@ describe('extract', () => {
 
     const meta = extract();
 
-    expect(meta.ogImages[0].url).toBe('https://example.com/img.jpg');
+    expect(meta.ogImages[0]?.url).toBe('https://example.com/img.jpg');
   });
 
   it('absolutizes a relative og:image against document.baseURI', () => {
@@ -110,7 +110,7 @@ describe('extract', () => {
 
     const meta = extract();
 
-    expect(meta.ogImages[0].url).toBe('https://example.com/img.jpg');
+    expect(meta.ogImages[0]?.url).toBe('https://example.com/img.jpg');
   });
 
   it('honors an absolute <base href> when absolutizing', () => {
@@ -119,7 +119,7 @@ describe('extract', () => {
 
     const meta = extract();
 
-    expect(meta.ogImages[0].url).toBe('https://cdn.example.com/images/og.jpg');
+    expect(meta.ogImages[0]?.url).toBe('https://cdn.example.com/images/og.jpg');
   });
 
   it('honors a relative <base href> when absolutizing', () => {
@@ -133,8 +133,8 @@ describe('extract', () => {
     const meta = extract();
 
     const expected = new URL('img.jpg', document.baseURI).href;
-    expect(meta.ogImages[0].url).toBe(expected);
-    expect(meta.ogImages[0].url).toMatch(/^https?:\/\//);
+    expect(meta.ogImages[0]?.url).toBe(expected);
+    expect(meta.ogImages[0]?.url).toMatch(/^https?:\/\//);
   });
 
   it('absolutizes og:url against document.baseURI', () => {

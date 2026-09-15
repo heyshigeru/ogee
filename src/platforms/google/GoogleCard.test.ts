@@ -42,7 +42,7 @@ describe('GoogleCard — search snippet in light and dark', () => {
 
     const images = container.querySelectorAll('img');
     expect(images.length).toBe(1);
-    expect(images[0].classList.contains('favicon')).toBe(true);
+    expect(images[0]?.classList.contains('favicon')).toBe(true);
 
     // No main-image notes are ever rendered.
     expect(queryByText(/No image available/i)).toBeNull();

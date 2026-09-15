@@ -19,7 +19,7 @@ function normalizeExt(raw: string): string {
  */
 function deriveExtension(imageUrl: string): string {
   const mimeMatch = DATA_MIME_PATTERN.exec(imageUrl);
-  if (mimeMatch) {
+  if (mimeMatch?.[1]) {
     const ext = normalizeExt(mimeMatch[1]);
     return EXT_PATTERN.test(`.${ext}`) ? ext : 'jpg';
   }
@@ -37,7 +37,7 @@ function deriveExtension(imageUrl: string): string {
   }
 
   const pathMatch = EXT_PATTERN.exec(path);
-  if (pathMatch) {
+  if (pathMatch?.[1]) {
     return normalizeExt(pathMatch[1]);
   }
 

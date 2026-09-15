@@ -124,7 +124,7 @@ describe('image-actions — buildFilename / download / copy', () => {
       const dataUrl = 'data:image/png;base64,AAA';
       downloadImage(dataUrl, 'https://example.com/');
       expect(download).toHaveBeenCalledTimes(1);
-      expect(download.mock.calls[0][0].url).toBe(dataUrl);
+      expect(download.mock.calls[0]?.[0]?.url).toBe(dataUrl);
     });
 
     it('does not call download for a javascript: URL', () => {
